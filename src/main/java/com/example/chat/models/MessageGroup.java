@@ -1,18 +1,20 @@
-package com.example.chat.model;
+package com.example.chat.models;
 import java.time.LocalDate;
-public class MessagePrivate {
+
+public class MessageGroup {
     private int id;
     private int senderId;
     private LocalDate sendingDateTime;
     private String body;
-    private int userId;
+    private int groupId;
 
-    public MessagePrivate(int id, int senderId, LocalDate sendingDateTime, String body, int userId) {
+    public MessageGroup(int id, int senderId, LocalDate sendingDateTime
+            , String body, int groupId) {
         this.id = id;
         this.senderId = senderId;
         this.sendingDateTime = sendingDateTime;
         this.body = body;
-        this.userId = userId;
+        this.groupId = groupId;
     }
 
     public int getId() {
@@ -47,11 +49,11 @@ public class MessagePrivate {
         this.body = body;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getGroupId() {
+        return groupId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
 }
