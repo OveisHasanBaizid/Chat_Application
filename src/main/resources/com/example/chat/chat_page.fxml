@@ -5,24 +5,22 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TextField layoutX="11.0" layoutY="405.0" prefHeight="37.0" prefWidth="437.0" promptText="Message" style="-fx-border-color: black;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
-      <ListView layoutX="10.0" layoutY="56.0" prefHeight="341.0" prefWidth="507.0" style="-fx-border-radius: 5px; -fx-border-color: black;" />
-      <Button layoutX="458.0" layoutY="405.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="59.0" style="-fx-border-color: black; -fx-background-color: white;" text="Send">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="11.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="505.0" />
-      <Circle fill="#c9d7e4" layoutX="32.0" layoutY="28.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label layoutX="55.0" layoutY="19.0" text="Oveis HasanBaizid" />
-      <Circle fill="#fafafa" layoutX="505.0" layoutY="15.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="WHITE" layoutX="505.0" layoutY="27.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="WHITE" layoutX="505.0" layoutY="39.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
-   </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.ChatController">
+   <TextField layoutX="11.0" layoutY="405.0" prefHeight="37.0" prefWidth="437.0" promptText="Message" style="-fx-border-color: black;">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </TextField>
+   <ListView layoutX="10.0" layoutY="56.0" prefHeight="341.0" prefWidth="507.0" style="-fx-border-radius: 5px; -fx-border-color: black;" />
+   <Button layoutX="458.0" layoutY="405.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="59.0" style="-fx-border-color: black; -fx-background-color: white;" text="Send">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Button>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="11.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="505.0" />
+   <Circle fx:id="circle_image" fill="#c9d7e4" layoutX="32.0" layoutY="28.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+   <Label layoutX="55.0" layoutY="19.0" text="Oveis HasanBaizid" />
+   <Circle fill="#fafafa" layoutX="505.0" layoutY="15.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+   <Circle fill="WHITE" layoutX="505.0" layoutY="27.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+   <Circle fill="WHITE" layoutX="505.0" layoutY="39.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
 </Pane>

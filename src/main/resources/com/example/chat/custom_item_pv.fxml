@@ -4,16 +4,16 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="135.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Circle fill="DODGERBLUE" layoutX="21.0" layoutY="21.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-      <Text layoutX="49.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name User">
-         <font>
-            <Font size="11.0" />
-         </font></Text>
-      <Text layoutX="49.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Message">
-         <font>
-            <Font size="10.0" />
-         </font></Text>
-   </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="110.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.ListPvController">
+   <Circle fx:id="circle_image" fill="DODGERBLUE" layoutX="16.0" layoutY="17.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+   <Text fx:id="txt_name" layoutX="37.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name User">
+      <font>
+         <Font size="9.0" />
+      </font>
+   </Text>
+   <Text layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Message">
+      <font>
+         <Font size="9.0" />
+      </font>
+   </Text>
 </Pane>

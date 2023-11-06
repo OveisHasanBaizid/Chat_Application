@@ -5,7 +5,7 @@
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://DESKTOP-1TDK8JA:1433;database=InstantMessagingDB</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://DESKTOP-1TDK8JA\Oveis:1433;database=InstantMessagingDB</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

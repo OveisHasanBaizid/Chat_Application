@@ -16,28 +16,33 @@ import java.sql.SQLException;
 
 public class LoginController {
     @FXML
-    TextField tf_phone  , tf_prefixCode;
+    TextField tf_phone, tf_prefixCode;
 
+    User user;
     public void btnLogin() throws IOException, SQLException {
         String phone = tf_phone.getText();
         String prefixCode = tf_prefixCode.getText();
-        if (phone.length()!=10){
-            ShowDialog.showMessage("Error","The phone number entered is invalid.");
+        if (phone.length() != 10) {
+            ShowDialog.showMessage("Error", "The phone number entered is invalid.");
             return;
         }
         DataBaseUser dataBaseUser = new DataBaseUser();
-        phone = ConverterPhoneNumbers.converterPhoneNumber(prefixCode,phone);
+        phone = ConverterPhoneNumbers.converterPhoneNumber(prefixCode, phone);
         User user = dataBaseUser.findUserByPhone(phone);
-        if(user==null){
-            ShowDialog.showMessage("Error","The desired user was not found.");
-        }else
+        if (user == null) {
+            ShowDialog.showMessage("Error", "The desired user was not found.");
+        } else {
+            this.user = user;
             showMainPage();
+        }
     }
-    public void showMainPage()throws IOException {
+
+    public void showMainPage() throws IOException {
         Stage stage = (Stage) tf_phone.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main_page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 709, 523);
         stage.setTitle("Chat");
+        stage.setUserData(user);
         stage.setScene(scene);
     }
 }

@@ -5,7 +5,7 @@ import java.sql.*;
 public class ConnectionDataBase {
     private static Connection connection;
     static {
-        String connectionString = "jdbc:sqlserver://DESKTOP-1TDK8JA;database=InstantMessagingDB;"+
+        String connectionString = "jdbc:sqlserver://DESKTOP-1TDK8JA\\Oveis;database=InstantMessagingDB;"+
                 "encrypt=false;trustServerCertificate=true;integratedSecurity=true";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

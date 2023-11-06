@@ -6,46 +6,34 @@
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.MainController">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e2e6ea" height="450.0" layoutX="14.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
-      <TabPane layoutX="14.0" layoutY="66.0" prefHeight="450.0" prefWidth="150.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="   Users   ">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="150.0">
-                     <children>
-                        <ListView fx:id="listView_pv" layoutX="5.0" layoutY="4.0" prefHeight="412.0" prefWidth="140.0"/>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab  text="   Groups   ">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="466.0" prefWidth="174.0">
-                     <children>
-                        <ListView fx:id="listView_group" layoutX="5.0" layoutY="4.0" prefHeight="412.0" prefWidth="140.0" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-      <Circle fill="#d0d1d1" layoutX="50.0" layoutY="34.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="38.0" layoutX="89.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
-      <Line endX="100.0" layoutX="20.0" layoutY="24.0" startX="74.07968139648438" startY="-1.9073486328125E-6" />
-      <Line endX="100.0" layoutX="20.0" layoutY="32.0" startX="74.07968139648438" startY="-1.9073486328125E-6" />
-      <Line endX="100.0" layoutX="20.0" layoutY="40.0" startX="74.07968139648438" startY="-1.9073486328125E-6" />
-      <Line endX="100.0" layoutX="20.0" layoutY="47.0" startX="74.07968139648438" startY="-1.9073486328125E-6" />
-      <Pane fx:id="chat_pane" layoutX="171.0" layoutY="65.0" prefHeight="450.0" prefWidth="527.0" style="-fx-background-color: #d0d1d1;" />
-      <Text layoutX="306.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat app">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="582.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00 : 00 : 00">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-   </children>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e2e6ea" height="450.0" layoutX="14.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+    <TabPane layoutX="14.0" layoutY="66.0" prefHeight="450.0" prefWidth="150.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="   Users   ">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="150.0">
+                <ListView fx:id="listView_pv" layoutX="5.0" layoutY="4.0" prefHeight="412.0" prefWidth="140.0" />
+            </AnchorPane>
+        </Tab>
+        <Tab text="   Groups   ">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="466.0" prefWidth="174.0">
+                <ListView fx:id="listView_group" layoutX="5.0" layoutY="4.0" prefHeight="412.0" prefWidth="140.0" />
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+    <Circle fx:id="circle_image" fill="#d0d1d1" layoutX="50.0" layoutY="34.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+    <Pane fx:id="chat_pane" layoutX="171.0" layoutY="65.0" prefHeight="450.0" prefWidth="527.0" style="-fx-background-color: #d0d1d1;" />
+    <Text layoutX="306.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat app">
+        <font>
+          <Font size="24.0" />
+        </font>
+    </Text>
+    <Text layoutX="582.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00 : 00 : 00">
+        <font>
+          <Font size="24.0" />
+        </font>
+    </Text>
+   <TextField fx:id="tf_name" editable="false" layoutX="83.0" layoutY="14.0" prefHeight="25.0" prefWidth="135.0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </TextField>
 </Pane>

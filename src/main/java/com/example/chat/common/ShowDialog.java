@@ -1,7 +1,6 @@
 package com.example.chat.common;
 
 import javafx.scene.control.Alert;
-import javafx.stage.StageStyle;
 
 public class ShowDialog {
     public static void showMessage(String type, String message) {
