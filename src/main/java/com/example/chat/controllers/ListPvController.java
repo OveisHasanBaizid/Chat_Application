@@ -31,7 +31,10 @@ public class ListPvController {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            txt_name.setText(user.getName());
+            if (user!=null){
+                txt_name.setText(user.getName());
+                txt_phone.setText(user.getPhone());
+            }
         }).start();
     }
 

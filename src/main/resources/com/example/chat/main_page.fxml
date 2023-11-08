@@ -10,7 +10,7 @@
     <TabPane layoutX="14.0" layoutY="66.0" prefHeight="450.0" prefWidth="150.0" tabClosingPolicy="UNAVAILABLE">
         <Tab text="   Users   ">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="150.0">
-                <ListView fx:id="listView_pv" layoutX="5.0" layoutY="4.0" prefHeight="412.0" prefWidth="140.0" />
+            <VBox fx:id="vbox_pv" layoutX="4.0" layoutY="4.0" prefHeight="412.0" prefWidth="142.0" style="-fx-background-color: #ffffff;" />
             </AnchorPane>
         </Tab>
         <Tab text="   Groups   ">
