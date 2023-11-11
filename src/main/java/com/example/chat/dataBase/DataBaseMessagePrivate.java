@@ -21,22 +21,22 @@ public class DataBaseMessagePrivate {
         userCurrent = HelperSendingObject.getUserCurrent();
     }
 
-    public List<MessagePrivate> getConversation(String senderUserName, String receiverUserName) throws SQLException {
+    public List<MessagePrivate> getConversation(int senderUserName, int receiverUserName) throws SQLException {
         List<MessagePrivate> messages = new ArrayList<>();
         String sql = """
-                DECLARE @SenderUserName decimal(18,0)
-                DECLARE @ReceiverUserName decimal(18,0)
+                DECLARE @SenderID decimal(18,0)
+                DECLARE @ReceiverID decimal(18,0)
                   
-                SET @SenderUserName = ?
-                SET @ReceiverUserName = ?
+                SET @SenderID = ?
+                SET @ReceiverID = ?
                                
                 SELECT * FROM dbo.tblMessagesPrivate
-                where (dbo.tblMessagesPrivate.SenderID = @SenderUserName AND dbo.tblMessagesPrivate.ReceiverUserID = @ReceiverUserName)
-                OR (dbo.tblMessagesPrivate.SenderID = @ReceiverUserName AND dbo.tblMessagesPrivate.ReceiverUserID = @SenderUserName)     
+                where (dbo.tblMessagesPrivate.SenderID = @SenderID AND dbo.tblMessagesPrivate.ReceiverUserID = @ReceiverID)
+                OR (dbo.tblMessagesPrivate.SenderID = @ReceiverID AND dbo.tblMessagesPrivate.ReceiverUserID = @SenderID)     
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, senderUserName);
-        statement.setString(2, receiverUserName);
+        statement.setString(1, String.valueOf(senderUserName));
+        statement.setString(2, String.valueOf(receiverUserName));
         ResultSet result = statement.executeQuery();
         while (result.next()) {
             messages.add(covertToUser(result));
@@ -55,13 +55,12 @@ public class DataBaseMessagePrivate {
                            ,GETDATE()
                            ,?
                            ,?)
-                GO
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, String.valueOf(userCurrent.getId()));
         statement.setString(2, text);
         statement.setString(3, String.valueOf(receiverId));
-        statement.executeQuery();
+        statement.executeUpdate();
     }
     public MessagePrivate covertToUser(ResultSet result) throws SQLException {
         return new MessagePrivate(Integer.parseInt(result.getString(1))

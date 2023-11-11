@@ -2,13 +2,13 @@ package com.example.chat.models;
 
 import java.time.LocalDate;
 
-public class Groups {
+public class Group {
     private int id;
     private String name;
     private int creatorId;
     private LocalDate creationDate;
 
-    public Groups(int id, String name, int creatorId, LocalDate creationDate) {
+    public Group(int id, String name, int creatorId, LocalDate creationDate) {
         this.id = id;
         this.name = name;
         this.creatorId = creatorId;

@@ -1,5 +1,6 @@
 package com.example.chat.dataBase;
 
+import com.example.chat.models.Group;
 import com.example.chat.models.User;
 
 import java.sql.*;
@@ -24,11 +25,11 @@ public class DataBaseUser {
     }
 
     public User covertToUser(ResultSet result) throws SQLException {
-        return new User(Integer.parseInt(result.getString(1))
-                , Integer.parseInt(result.getString(2))
+        return new User(result.getInt(1)
+                , result.getInt(2)
                 , result.getString(3)
                 , result.getString(4)
-                , Integer.parseInt(result.getString(5)) != 0);
+                , result.getInt(5) != 0);
     }
 
     public List<User> getAll() throws SQLException {
@@ -63,24 +64,18 @@ public class DataBaseUser {
         }
         return contacts;
     }
-    public  List<String> getAlGroups(String name) throws SQLException {
-        List<String> groups = new ArrayList<>();
-        String sql = """
-                DECLARE @IUserName NVARCHAR(50)
-                SET @IUserName = ?             
-                SELECT Gp.GroupName FROM  dbo.tblUsers AS Usr INNER JOIN
-                                          dbo.tblGroups AS Gp ON Usr.IUserID = Gp.GroupCreatorID
-                GROUP BY Gp.GroupName, Usr.IUserName
-                HAVING      (Usr.IUserName = @IUserName)                  
-                """;
+    public  List<Group> getAlGroups(int userId) throws SQLException {
+        List<Group> groups = new ArrayList<>();
+        String sql = "select GroupID from tblGroupMembers where UserID = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, name);
+        statement.setString(1, String.valueOf(userId));
         ResultSet result = statement.executeQuery();
+        DataBaseGroup dataBaseGroup = new DataBaseGroup();
         while (result.next()) {
-            groups.add(result.getString(1));
+            System.out.println(result.getInt(1));
+            groups.add(dataBaseGroup.findGroupById(result.getInt(1)));
         }
         return groups;
     }
-
 
 }

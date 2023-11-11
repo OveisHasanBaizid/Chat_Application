@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -33,10 +34,14 @@ public class ChatController {
 
     @FXML
     ScrollPane scrollPane;
-    User user, userCurrent;
+
+    @FXML
+    TextField td_message;
+
+    User contact, userCurrent;
 
     public void initialize() throws FileNotFoundException {
-        user = (User) HelperSendingObject.getObject();
+        contact = (User) HelperSendingObject.getObject();
         userCurrent = HelperSendingObject.getUserCurrent();
         circle_image.setFill(new ImagePattern(
                 new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\profile_1.jpeg"))));
@@ -47,7 +52,7 @@ public class ChatController {
                 throw new RuntimeException(e);
             }
             Platform.runLater(() -> {
-                lb_name.setText(user.getName());
+                lb_name.setText(contact.getName());
                 try {
                     setMessage();
                 } catch (SQLException e) {
@@ -62,7 +67,7 @@ public class ChatController {
         vbox_message.getChildren().clear();
         vbox_message.setSpacing(10);
         for (MessagePrivate message : dataBaseMessagePrivate
-                .getConversation("1", "2")) {
+                .getConversation(contact.getId(), userCurrent.getId())) {
             HBox messageBox = new HBox();
             FXMLLoader loader = new FXMLLoader(
                     HelloApplication.class.getResource("custom_message_pv.fxml"));
@@ -82,5 +87,14 @@ public class ChatController {
             }
         }
         scrollPane.vvalueProperty().bind(vbox_message.heightProperty());
+    }
+    public void btnSend() throws SQLException {
+        String message = td_message.getText();
+        if (message.isEmpty())
+            return;
+        DataBaseMessagePrivate messagePrivate = new DataBaseMessagePrivate();
+        messagePrivate.sendMessage(message,contact.getId());
+        setMessage();
+        td_message.clear();
     }
 }

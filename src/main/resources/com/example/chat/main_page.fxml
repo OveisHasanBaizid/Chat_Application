@@ -7,15 +7,15 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.MainController">
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e2e6ea" height="450.0" layoutX="14.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
-    <TabPane layoutX="14.0" layoutY="66.0" prefHeight="450.0" prefWidth="150.0" tabClosingPolicy="UNAVAILABLE">
+    <TabPane fx:id="tabPane" layoutX="14.0" layoutY="66.0" prefHeight="450.0" prefWidth="150.0" tabClosingPolicy="UNAVAILABLE">
         <Tab text="   Users   ">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="150.0">
             <VBox fx:id="vbox_pv" layoutX="4.0" layoutY="4.0" prefHeight="412.0" prefWidth="142.0" style="-fx-background-color: #ffffff;" />
             </AnchorPane>
         </Tab>
         <Tab text="   Groups   ">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="466.0" prefWidth="174.0">
-                <ListView fx:id="listView_group" layoutX="5.0" layoutY="4.0" prefHeight="412.0" prefWidth="140.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="150.0">
+                <VBox fx:id="vbox_group" layoutX="4.0" layoutY="4.0" prefHeight="412.0" prefWidth="142.0" style="-fx-background-color: #ffffff;" />
             </AnchorPane>
         </Tab>
     </TabPane>

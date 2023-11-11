@@ -6,12 +6,12 @@
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.ChatController">
-   <TextField layoutX="11.0" layoutY="405.0" prefHeight="37.0" prefWidth="437.0" promptText="Message" style="-fx-border-color: black;">
+   <TextField fx:id="td_message" layoutX="11.0" layoutY="405.0" prefHeight="37.0" prefWidth="437.0" promptText="Message" style="-fx-border-color: black;">
       <font>
          <Font size="14.0" />
       </font>
    </TextField>
-   <Button layoutX="458.0" layoutY="405.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="59.0" style="-fx-border-color: black; -fx-background-color: white;" text="Send">
+   <Button onAction="#btnSend" layoutX="458.0" layoutY="405.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="59.0" style="-fx-border-color: black; -fx-background-color: white;" text="Send">
       <font>
          <Font name="System Bold" size="14.0" />
       </font>
