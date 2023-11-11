@@ -7,16 +7,13 @@ import com.example.chat.models.User;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -40,7 +37,7 @@ public class MainController {
     @FXML
     TextField tf_name;
 
-    User user;
+    User userCurrent;
 
     @FXML
     Circle circle_image;
@@ -56,8 +53,8 @@ public class MainController {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            user = (User) chat_pane.getScene().getWindow().getUserData();
-            tf_name.setText(user.getName());
+            userCurrent = HelperSendingObject.getUserCurrent();
+            tf_name.setText(userCurrent.getName());
             Platform.runLater(() -> {
                 for (int i = 0; i < 2 ; i++) {
                     try {
@@ -80,7 +77,7 @@ public class MainController {
     public void addToListPv() throws SQLException {
         DataBaseUser dataBaseUser = new DataBaseUser();
         vbox_pv.getChildren().clear();
-        for (User user : dataBaseUser.getAllContact(user.getName())) {
+        for (User user : dataBaseUser.getAllContact(userCurrent.getName())) {
             FXMLLoader loader = new FXMLLoader(
                     HelloApplication.class.getResource("custom_item_pv.fxml"));
             try {
@@ -107,7 +104,7 @@ public class MainController {
     public void addToListGroup() throws SQLException {
         DataBaseUser dataBaseUser = new DataBaseUser();
         ObservableList<String> observableList = FXCollections
-                .observableArrayList(dataBaseUser.getAlGroups(user.getName()));
+                .observableArrayList(dataBaseUser.getAlGroups(userCurrent.getName()));
         listView_group.setItems(observableList);
         listView_group.setCellFactory(new Callback<>() {
             @Override

@@ -1,6 +1,8 @@
 package com.example.chat.dataBase;
 
+import com.example.chat.common.HelperSendingObject;
 import com.example.chat.models.MessagePrivate;
+import com.example.chat.models.User;
 import javafx.util.converter.DateStringConverter;
 
 import java.sql.Connection;
@@ -13,9 +15,10 @@ import java.util.List;
 
 public class DataBaseMessagePrivate {
     Connection connection;
-
+    User userCurrent;
     public DataBaseMessagePrivate() {
         this.connection = ConnectionDataBase.getConnection();
+        userCurrent = HelperSendingObject.getUserCurrent();
     }
 
     public List<MessagePrivate> getConversation(String senderUserName, String receiverUserName) throws SQLException {
@@ -40,7 +43,26 @@ public class DataBaseMessagePrivate {
         }
         return messages;
     }
-
+    public void sendMessage(String text , int receiverId) throws SQLException {
+        String sql = """
+                INSERT INTO [tblMessagesPrivate]
+                           ([SenderID]
+                           ,[MessageDateTime]
+                           ,[MessageBudy]
+                           ,[ReceiverUserID])
+                     VALUES
+                           (?
+                           ,GETDATE()
+                           ,?
+                           ,?)
+                GO
+                """;
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, String.valueOf(userCurrent.getId()));
+        statement.setString(2, text);
+        statement.setString(3, String.valueOf(receiverId));
+        statement.executeQuery();
+    }
     public MessagePrivate covertToUser(ResultSet result) throws SQLException {
         return new MessagePrivate(Integer.parseInt(result.getString(1))
                 , Integer.parseInt(result.getString(2))

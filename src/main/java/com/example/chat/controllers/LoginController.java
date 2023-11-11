@@ -2,6 +2,7 @@ package com.example.chat.controllers;
 
 import com.example.chat.HelloApplication;
 import com.example.chat.common.ConverterPhoneNumbers;
+import com.example.chat.common.HelperSendingObject;
 import com.example.chat.common.ShowDialog;
 import com.example.chat.dataBase.DataBaseUser;
 import com.example.chat.models.User;
@@ -18,7 +19,6 @@ public class LoginController {
     @FXML
     TextField tf_phone, tf_prefixCode;
 
-    User user;
     public void btnLogin() throws IOException, SQLException {
         String phone = tf_phone.getText();
         String prefixCode = tf_prefixCode.getText();
@@ -32,7 +32,7 @@ public class LoginController {
         if (user == null) {
             ShowDialog.showMessage("Error", "The desired user was not found.");
         } else {
-            this.user = user;
+            HelperSendingObject.setUserCurrent(user);
             showMainPage();
         }
     }
@@ -42,7 +42,6 @@ public class LoginController {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main_page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 709, 523);
         stage.setTitle("Chat");
-        stage.setUserData(user);
         stage.setScene(scene);
     }
 }

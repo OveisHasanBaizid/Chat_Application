@@ -18,9 +18,11 @@
    </Button>
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="11.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="505.0" />
    <Circle fx:id="circle_image" fill="#c9d7e4" layoutX="32.0" layoutY="28.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-   <Label fx:id="lb_name" layoutX="55.0" layoutY="19.0" text="Oveis HasanBaizid" />
+   <Label fx:id="lb_name" layoutX="55.0" layoutY="19.0" />
    <Circle fill="#fafafa" layoutX="505.0" layoutY="15.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
    <Circle fill="WHITE" layoutX="505.0" layoutY="27.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
    <Circle fill="WHITE" layoutX="505.0" layoutY="39.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
-   <VBox fx:id="vbox_message" layoutX="11.0" layoutY="53.0" prefHeight="347.0" prefWidth="505.0" style="-fx-border-color: black;" />
+   <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutX="11.0" layoutY="55.0" prefHeight="347.0" prefWidth="505.0" style="-fx-alignment: center;">
+      <VBox fx:id="vbox_message" prefHeight="341.0" prefWidth="498.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff; -fx-padding: 5;" />
+   </ScrollPane>
 </Pane>

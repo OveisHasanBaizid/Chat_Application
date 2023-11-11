@@ -5,16 +5,17 @@
 <?import javafx.scene.text.Text?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0"
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0"
       prefWidth="314.0" style="-fx-border-color: black; -fx-border-radius: 9; -fx-background-color: white;"
-      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <Text layoutX="7.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0"
+      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="com.example.chat.controllers.MessagePrivateController">
+   <Text fx:id="txt_message" layoutX="7.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0"
          text=" Hello My Name Is Administrator. . .  ">
       <font>
          <Font size="14.0"/>
       </font>
    </Text>
-   <Text layoutX="10.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2016-10-16 19:49:52.970">
+   <Text fx:id="txt_date" layoutX="10.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2016-10-16 19:49:52.970">
       <font>
          <Font size="9.0"/>
       </font>
