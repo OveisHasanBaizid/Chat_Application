@@ -79,11 +79,17 @@ public class MainController {
     }
 
 
-    public void showChatPane() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("chat_page.fxml"));
+    public void showChatPvPane() throws IOException {
+        HelperSendingObject.setPaneChat(chat_pane);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("chat_pv_page.fxml"));
         chat_pane.getChildren().add(fxmlLoader.load());
     }
-
+    public void showChatGroupPane() throws IOException {
+        HelperSendingObject.setPaneChat(chat_pane);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("chat_group_page.fxml"));
+        chat_pane.getChildren().clear();
+        chat_pane.getChildren().add(fxmlLoader.load());
+    }
     public void addToListPv() throws SQLException {
         DataBaseUser dataBaseUser = new DataBaseUser();
         vbox_pv.getChildren().clear();
@@ -96,7 +102,7 @@ public class MainController {
                 root.setOnMouseClicked(event -> {
                     HelperSendingObject.setObject(user);
                     try {
-                        showChatPane();
+                        showChatPvPane();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -122,7 +128,7 @@ public class MainController {
                 root.setOnMouseClicked(event -> {
                     HelperSendingObject.setObject(group);
                     try {
-                        showChatPane();
+                        showChatGroupPane();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

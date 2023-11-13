@@ -2,8 +2,9 @@ package com.example.chat.controllers;
 
 import com.example.chat.HelloApplication;
 import com.example.chat.common.HelperSendingObject;
-import com.example.chat.dataBase.DataBaseMessagePrivate;
-import com.example.chat.models.MessagePrivate;
+import com.example.chat.dataBase.DataBaseGroup;
+import com.example.chat.models.Group;
+import com.example.chat.models.MessageGroup;
 import com.example.chat.models.User;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -23,7 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ChatController {
+public class ChatGroupController {
     @FXML
     Circle circle_image;
     @FXML
@@ -38,13 +40,35 @@ public class ChatController {
     @FXML
     TextField td_message;
 
-    User contact, userCurrent;
+    User userCurrent;
+
+    Group group;
 
     public void initialize() throws FileNotFoundException {
-        contact = (User) HelperSendingObject.getObject();
+        group = (Group) HelperSendingObject.getObject();
         userCurrent = HelperSendingObject.getUserCurrent();
         circle_image.setFill(new ImagePattern(
                 new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\profile_1.jpeg"))));
+        initialize2();
+        actionCircleImage();
+    }
+
+    public void actionCircleImage() {
+        circle_image.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader loader = new FXMLLoader(
+                    HelloApplication.class.getResource("group_details_page.fxml"));
+            try {
+                HelperSendingObject.setObject(group);
+                Pane pane = HelperSendingObject.getPaneChat();
+                pane.getChildren().clear();
+                pane.getChildren().add(loader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public void initialize2() {
         new Thread(() -> {
             try {
                 Thread.sleep(100);
@@ -52,7 +76,7 @@ public class ChatController {
                 throw new RuntimeException(e);
             }
             Platform.runLater(() -> {
-                lb_name.setText(contact.getName());
+                lb_name.setText(group.getName());
                 try {
                     setMessage();
                 } catch (SQLException e) {
@@ -63,14 +87,14 @@ public class ChatController {
     }
 
     public void setMessage() throws SQLException {
-        DataBaseMessagePrivate dataBaseMessagePrivate = new DataBaseMessagePrivate();
+        DataBaseGroup dataBaseGroup = new DataBaseGroup();
         vbox_message.getChildren().clear();
         vbox_message.setSpacing(10);
-        for (MessagePrivate message : dataBaseMessagePrivate
-                .getConversation(contact.getId(), userCurrent.getId())) {
+        for (MessageGroup message : dataBaseGroup
+                .getConversation(group.getId())) {
             HBox messageBox = new HBox();
             FXMLLoader loader = new FXMLLoader(
-                    HelloApplication.class.getResource("custom_message_pv.fxml"));
+                    HelloApplication.class.getResource("custom_message_group.fxml"));
             try {
                 HelperSendingObject.setObject(message);
                 Parent root = loader.load();
@@ -88,12 +112,13 @@ public class ChatController {
         }
         scrollPane.vvalueProperty().bind(vbox_message.heightProperty());
     }
+
     public void btnSend() throws SQLException {
         String message = td_message.getText();
         if (message.isEmpty())
             return;
-        DataBaseMessagePrivate messagePrivate = new DataBaseMessagePrivate();
-        messagePrivate.sendMessage(message,contact.getId());
+        DataBaseGroup dataBaseGroup = new DataBaseGroup();
+        dataBaseGroup.sendMessage(message, group.getId());
         setMessage();
         td_message.clear();
     }

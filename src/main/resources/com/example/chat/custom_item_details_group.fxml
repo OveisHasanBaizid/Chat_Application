@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.ItemDetailsGroupController">
+    <children>
+        <Circle fx:id="circle_image" fill="DODGERBLUE" layoutX="35.0" layoutY="32.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
+        <Text fx:id="txt_name" layoutX="79.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Name User" textAlignment="CENTER">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="txt_phone" layoutX="182.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="+98-911-125-3620" textAlignment="CENTER">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="txt_admin" fill="#036b1d" layoutX="355.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="admin" textAlignment="CENTER">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+      <Circle fill="#1fff27" layoutX="432.0" layoutY="34.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+    </children>
+</Pane>

@@ -23,7 +23,15 @@ public class DataBaseUser {
             return covertToUser(result);
         return null;
     }
-
+    public User findUserById(int userId) throws SQLException {
+        String sql = "SELECT * FROM tblUsers where IUserID=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, userId);
+        ResultSet result = statement.executeQuery();
+        if (result.next())
+            return covertToUser(result);
+        return null;
+    }
     public User covertToUser(ResultSet result) throws SQLException {
         return new User(result.getInt(1)
                 , result.getInt(2)

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="527.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.GroupDetailsController">
+    <children>
+        <Circle fx:id="circle_image" fill="DODGERBLUE" layoutX="96.0" layoutY="46.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
+        <Text fx:id="txt_nameGroup" layoutX="158.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group Name">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Text layoutX="316.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Users : 20">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Text layoutX="316.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online : 10">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Circle layoutX="509.0" layoutY="23.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle layoutX="509.0" layoutY="42.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle layoutX="509.0" layoutY="61.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+        <Line endX="449.0" layoutX="78.0" layoutY="88.0" startX="-78.0" />
+        <Text fx:id="btn_back" layoutX="13.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←" wrappingWidth="41.6640625">
+            <font>
+                <Font name="System Bold" size="48.0" />
+            </font>
+        </Text>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="6.0" layoutY="93.0" prefHeight="350.0" prefWidth="515.0">
+         <content>
+              <VBox fx:id="vbox_users" prefHeight="340.0" prefWidth="489.0" style="-fx-background-color: white; -fx-alignment: center;" />
+         </content></ScrollPane>
+    </children>
+</Pane>

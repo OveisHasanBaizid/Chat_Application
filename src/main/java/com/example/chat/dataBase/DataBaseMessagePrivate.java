@@ -39,7 +39,7 @@ public class DataBaseMessagePrivate {
         statement.setString(2, String.valueOf(receiverUserName));
         ResultSet result = statement.executeQuery();
         while (result.next()) {
-            messages.add(covertToUser(result));
+            messages.add(covertToMessagePrivate(result));
         }
         return messages;
     }
@@ -62,7 +62,7 @@ public class DataBaseMessagePrivate {
         statement.setString(3, String.valueOf(receiverId));
         statement.executeUpdate();
     }
-    public MessagePrivate covertToUser(ResultSet result) throws SQLException {
+    public MessagePrivate covertToMessagePrivate(ResultSet result) throws SQLException {
         return new MessagePrivate(Integer.parseInt(result.getString(1))
                 , Integer.parseInt(result.getString(2))
                 , LocalDate.now()
