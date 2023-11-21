@@ -54,4 +54,5 @@ public class User {
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
+
 }

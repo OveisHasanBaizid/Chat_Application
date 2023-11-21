@@ -45,10 +45,10 @@ public class ChatGroupController {
     Group group;
 
     public void initialize() throws FileNotFoundException {
-        group = (Group) HelperSendingObject.getObject();
+        group = HelperSendingObject.getGroup();
         userCurrent = HelperSendingObject.getUserCurrent();
         circle_image.setFill(new ImagePattern(
-                new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\profile_1.jpeg"))));
+                new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\group_icon.jpeg"))));
         initialize2();
         actionCircleImage();
     }
@@ -58,7 +58,7 @@ public class ChatGroupController {
             FXMLLoader loader = new FXMLLoader(
                     HelloApplication.class.getResource("group_details_page.fxml"));
             try {
-                HelperSendingObject.setObject(group);
+                HelperSendingObject.setGroup(group);
                 Pane pane = HelperSendingObject.getPaneChat();
                 pane.getChildren().clear();
                 pane.getChildren().add(loader.load());

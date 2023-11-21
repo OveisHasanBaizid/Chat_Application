@@ -13,28 +13,28 @@
                 <Font size="18.0" />
             </font>
         </Text>
-        <Text layoutX="316.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Users : 20">
+        <Text fx:id="number_users" layoutX="316.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Users : 20">
             <font>
                 <Font size="18.0" />
             </font>
         </Text>
-        <Text layoutX="316.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online : 10">
+        <Text layoutX="316.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online : 1">
             <font>
                 <Font size="18.0" />
             </font>
         </Text>
-        <Circle layoutX="509.0" layoutY="23.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle layoutX="509.0" layoutY="42.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle layoutX="509.0" layoutY="61.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
         <Line endX="449.0" layoutX="78.0" layoutY="88.0" startX="-78.0" />
         <Text fx:id="btn_back" layoutX="13.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←" wrappingWidth="41.6640625">
             <font>
                 <Font name="System Bold" size="48.0" />
             </font>
         </Text>
-      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="6.0" layoutY="93.0" prefHeight="350.0" prefWidth="515.0">
-         <content>
-              <VBox fx:id="vbox_users" prefHeight="340.0" prefWidth="489.0" style="-fx-background-color: white; -fx-alignment: center;" />
-         </content></ScrollPane>
+        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="6.0" layoutY="93.0" prefHeight="350.0" prefWidth="515.0">
+            <content>
+                <VBox fx:id="vbox_users" prefHeight="340.0" prefWidth="489.0" style="-fx-background-color: white; -fx-alignment: center;" />
+            </content>
+        </ScrollPane>
+        <Button layoutX="440.0" layoutY="51.0" mnemonicParsing="false" onAction="#btn_addUser" style="-fx-background-color: #36dc36; " text="Add user" />
+        <Button layoutX="440.0" layoutY="13.0" mnemonicParsing="false" onAction="#btn_removeGroup" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #e12a2a; -fx-text-fill: white;" text="remove" />
     </children>
 </Pane>

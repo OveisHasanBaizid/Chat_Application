@@ -82,6 +82,7 @@ public class MainController {
     public void showChatPvPane() throws IOException {
         HelperSendingObject.setPaneChat(chat_pane);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("chat_pv_page.fxml"));
+        chat_pane.getChildren().clear();
         chat_pane.getChildren().add(fxmlLoader.load());
     }
     public void showChatGroupPane() throws IOException {
@@ -93,7 +94,7 @@ public class MainController {
     public void addToListPv() throws SQLException {
         DataBaseUser dataBaseUser = new DataBaseUser();
         vbox_pv.getChildren().clear();
-        for (User user : dataBaseUser.getAllContact(userCurrent.getName())) {
+        for (User user : dataBaseUser.getAllContact(userCurrent.getId())) {
             FXMLLoader loader = new FXMLLoader(
                     HelloApplication.class.getResource("custom_item_pv.fxml"));
             try {
@@ -126,7 +127,7 @@ public class MainController {
                 HelperSendingObject.setObject(group);
                 Parent root = loader.load();
                 root.setOnMouseClicked(event -> {
-                    HelperSendingObject.setObject(group);
+                    HelperSendingObject.setGroup(group);
                     try {
                         showChatGroupPane();
                     } catch (IOException e) {

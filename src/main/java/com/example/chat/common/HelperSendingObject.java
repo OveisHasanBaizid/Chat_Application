@@ -1,5 +1,6 @@
 package com.example.chat.common;
 
+import com.example.chat.models.Group;
 import com.example.chat.models.User;
 import javafx.scene.layout.Pane;
 
@@ -8,6 +9,7 @@ public final class HelperSendingObject {
     private static User userCurrent;
     private static Pane paneChat;
     private static boolean isAdmin;
+    private static Group group;
 
     public static Object getObject() {
         return object;
@@ -39,5 +41,13 @@ public final class HelperSendingObject {
 
     public static void setIsAdmin(boolean isAdmin) {
         HelperSendingObject.isAdmin = isAdmin;
+    }
+
+    public static Group getGroup() {
+        return group;
+    }
+
+    public static void setGroup(Group group) {
+        HelperSendingObject.group = group;
     }
 }

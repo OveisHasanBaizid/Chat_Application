@@ -50,25 +50,18 @@ public class DataBaseUser {
         }
         return users;
     }
-    public  List<User> getAllContact(String name) throws SQLException {
+    public  List<User> getAllContact(int userId) throws SQLException {
         List<User> contacts = new ArrayList<>();
         String sql = """
-                DECLARE @IUserName NVARCHAR(50)
-                SET @IUserName = ?          
-                SELECT     TOP (100) PERCENT tblMembers.IUserName AS MemnrUserName, tblMembers.IUserPhone AS MemberPhone
-                FROM         dbo.tblUsers AS Usr INNER JOIN dbo.tblGroups AS Gp ON Usr.IUserID = Gp.GroupCreatorID INNER JOIN
-                             dbo.tblGroupMembers AS Mgp ON Gp.GroupID = Mgp.GroupID INNER JOIN
-                             dbo.tblUsers AS tblMembers ON Mgp.UserID = tblMembers.IUserID
-                WHERE     (Usr.IUserName = @IUserName)
-                GROUP BY tblMembers.IUserName, tblMembers.IUserPhone
-                HAVING      (tblMembers.IUserName <> @IUserName)
-                ORDER BY MemnrUserName
+                Select IUserID , IUserCountryID , IUserName , IUserPhone , IsIUserBlocked 
+                FROM dbo.tblUsers AS Usr INNER JOIN tblContactLists as list 
+                on usr.IUserID = list.UserInContactListID where list.MainUserID = ?
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, name);
+        statement.setInt(1, userId);
         ResultSet result = statement.executeQuery();
         while (result.next()) {
-            contacts.add(findUserByPhone(result.getString(2)));
+            contacts.add(covertToUser(result));
         }
         return contacts;
     }
@@ -80,7 +73,6 @@ public class DataBaseUser {
         ResultSet result = statement.executeQuery();
         DataBaseGroup dataBaseGroup = new DataBaseGroup();
         while (result.next()) {
-            System.out.println(result.getInt(1));
             groups.add(dataBaseGroup.findGroupById(result.getInt(1)));
         }
         return groups;

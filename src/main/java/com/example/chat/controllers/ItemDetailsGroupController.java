@@ -1,6 +1,7 @@
 package com.example.chat.controllers;
 
 import com.example.chat.common.HelperSendingObject;
+import com.example.chat.models.Group;
 import com.example.chat.models.User;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -22,12 +23,16 @@ public class ItemDetailsGroupController {
 
     User user, currentUser;
 
+    Group group;
+
     boolean isAdmin;
 
     public void initialize() throws FileNotFoundException {
         user = (User) HelperSendingObject.getObject();
         currentUser = HelperSendingObject.getUserCurrent();
         isAdmin = HelperSendingObject.isIsAdmin();
+        group = HelperSendingObject.getGroup();
+
         circle_image.setFill(new ImagePattern(
                 new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\profile_1.jpeg"))));
 
@@ -45,6 +50,10 @@ public class ItemDetailsGroupController {
                     txt_name.setText(user.getName());
                 if (!isAdmin)
                     txt_admin.setText("");
+                if (user.getId()==group.getCreatorId()) {
+                    txt_admin.setText("Owner");
+                    txt_admin.setFill(Color.RED);
+                }
                 txt_phone.setText(user.getPhone());
             });
         }).start();
