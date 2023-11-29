@@ -45,7 +45,7 @@ public class AddToGroupController {
     public void initVBox() throws SQLException {
         DataBaseGroup dataBaseGroup = new DataBaseGroup();
         for (User user : dataBaseGroup.filterUserAreNotInGroup(group.getId())) {
-            Text text = new Text(" "+user.getName() + "   " + user.getPhone());
+            Text text = new Text(" " + user.getName() + "   " + user.getPhone());
             text.setFont(Font.font(17));
             vBox_list.getChildren().add(text);
             vBox_list.getChildren().add(new Line(20, 5, 220, 5));
@@ -60,6 +60,7 @@ public class AddToGroupController {
             });
         }
     }
+
     public void showChatGroupPane() throws IOException {
         HelperSendingObject.setGroup(group);
         Pane pane = HelperSendingObject.getPaneChat();
@@ -67,6 +68,7 @@ public class AddToGroupController {
         pane.getChildren().clear();
         pane.getChildren().add(fxmlLoader.load());
     }
+
     public void btn_back() {
         Stage stage = (Stage) dialog_pane.getScene().getWindow();
         stage.close();

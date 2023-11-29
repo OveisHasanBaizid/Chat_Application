@@ -5,21 +5,19 @@
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.LoginController">
-   <children>
-      <Label layoutX="149.0" layoutY="40.0" text="Chat app">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <ComboBox layoutX="64.0" layoutY="139.0" prefHeight="25.0" prefWidth="71.0" promptText="Iran" style="-fx-background-color: white; -fx-border-color: black;" />
-      <TextField fx:id="tf_prefixCode" layoutX="146.0" layoutY="140.0" prefHeight="25.0" prefWidth="55.0" text="+98" />
-      <TextField fx:id="tf_phone" layoutX="211.0" layoutY="140.0" prefHeight="25.0" prefWidth="137.0" text="9111253620" />
-      <TextField layoutX="105.0" layoutY="198.0" prefHeight="25.0" prefWidth="121.0" text="Code" />
-      <Button layoutX="241.0" layoutY="197.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: black;" text="Get Code" />
-      <Button layoutX="179.0" layoutY="260.0" mnemonicParsing="false" onAction="#btnLogin" style="-fx-background-color: white; -fx-border-color: black;" text="Login">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-   </children>
+   <Label layoutX="149.0" layoutY="40.0" text="Chat app">
+      <font>
+         <Font name="System Bold" size="24.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="cb_countries_name" layoutX="48.0" layoutY="139.0" prefHeight="27.0" prefWidth="101.0" promptText="Iran" style="-fx-background-color: white; -fx-border-color: black;" />
+   <TextField fx:id="tf_prefixCode" layoutX="159.0" layoutY="140.0" prefHeight="25.0" prefWidth="55.0" text="+98" />
+   <TextField fx:id="tf_phone" layoutX="220.0" layoutY="140.0" prefHeight="25.0" prefWidth="137.0" text="9111253620" />
+   <TextField editable="false" layoutX="105.0" layoutY="198.0" prefHeight="25.0" prefWidth="121.0" text="Code" />
+   <Button disable="true" layoutX="241.0" layoutY="197.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: black;" text="Get Code" />
+   <Button layoutX="179.0" layoutY="260.0" mnemonicParsing="false" onAction="#btnLogin" style="-fx-background-color: white; -fx-border-color: black;" text="Login">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Button>
 </Pane>

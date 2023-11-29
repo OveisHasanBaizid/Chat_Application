@@ -23,6 +23,15 @@ public class DataBaseUser {
             return covertToUser(result);
         return null;
     }
+
+    public boolean isExistUserName(String phone) throws SQLException {
+        String sql = "SELECT * FROM tblUsers where IUserName=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, phone);
+        ResultSet result = statement.executeQuery();
+        return result.next();
+    }
+
     public User findUserById(int userId) throws SQLException {
         String sql = "SELECT * FROM tblUsers where IUserID=?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -32,6 +41,7 @@ public class DataBaseUser {
             return covertToUser(result);
         return null;
     }
+
     public User covertToUser(ResultSet result) throws SQLException {
         return new User(result.getInt(1)
                 , result.getInt(2)
@@ -50,7 +60,8 @@ public class DataBaseUser {
         }
         return users;
     }
-    public  List<User> getAllContact(int userId) throws SQLException {
+
+    public List<User> getAllContact(int userId) throws SQLException {
         List<User> contacts = new ArrayList<>();
         String sql = """
                 Select IUserID , IUserCountryID , IUserName , IUserPhone , IsIUserBlocked 
@@ -65,7 +76,8 @@ public class DataBaseUser {
         }
         return contacts;
     }
-    public  List<Group> getAlGroups(int userId) throws SQLException {
+
+    public List<Group> getAlGroups(int userId) throws SQLException {
         List<Group> groups = new ArrayList<>();
         String sql = "select GroupID from tblGroupMembers where UserID = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -78,4 +90,16 @@ public class DataBaseUser {
         return groups;
     }
 
+    public void insertUser(User user, String prefixPhone) throws SQLException {
+        String sql = """
+                INSERT INTO dbo.tblUsers (IUserCountryID, IUserName, IUserPhone, IsIUserBlocked)
+                                SELECT CountryID, ? , ?, 0
+                                FROM dbo.tblCountry WHERE PreNumber = ?
+                """;
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, user.getName());
+        statement.setString(2, user.getPhone());
+        statement.setString(3, prefixPhone);
+        statement.executeUpdate();
+    }
 }
