@@ -7,10 +7,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.MainController">
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e2e6ea" height="450.0" layoutX="14.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
-    <TabPane fx:id="tabPane" layoutX="14.0" layoutY="66.0" prefHeight="450.0" prefWidth="150.0" tabClosingPolicy="UNAVAILABLE">
+    <TabPane fx:id="tabPane" layoutX="14.0" layoutY="66.0" prefHeight="450.0" prefWidth="150.0" style="-fx-background-color: #ffffff;" tabClosingPolicy="UNAVAILABLE">
         <Tab text="   Users   ">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="150.0">
-            <VBox fx:id="vbox_pv" layoutX="4.0" layoutY="4.0" prefHeight="412.0" prefWidth="142.0" style="-fx-background-color: #ffffff;" />
+            <VBox fx:id="vbox_pv" layoutX="4.0" layoutY="4.0" prefHeight="383.0" prefWidth="142.0" style="-fx-background-color: #ffffff;" />
+            <Button layoutX="27.0" layoutY="391.0" mnemonicParsing="false" onAction="#btn_addContact" prefHeight="26.0" prefWidth="96.0" text="Add User" />
             </AnchorPane>
         </Tab>
         <Tab text="   Groups   ">
@@ -21,12 +22,7 @@
     </TabPane>
     <Circle fx:id="circle_image" fill="#d0d1d1" layoutX="50.0" layoutY="34.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
     <Pane fx:id="chat_pane" layoutX="171.0" layoutY="65.0" prefHeight="450.0" prefWidth="527.0" style="-fx-background-color: #d0d1d1;" />
-    <Text layoutX="306.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat app">
-        <font>
-          <Font size="24.0" />
-        </font>
-    </Text>
-    <Text layoutX="582.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00 : 00 : 00">
+    <Text layoutX="387.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat app">
         <font>
           <Font size="24.0" />
         </font>

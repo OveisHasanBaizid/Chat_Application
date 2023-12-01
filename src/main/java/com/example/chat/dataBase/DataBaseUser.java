@@ -102,4 +102,15 @@ public class DataBaseUser {
         statement.setString(3, prefixPhone);
         statement.executeUpdate();
     }
+
+    public void addContact(int currentUserId, int contractId) throws SQLException {
+        String sql = """
+                INSERT INTO dbo.tblContactLists (MainUserID, UserInContactListID)
+                                VALUES (? ,?)
+                """;
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, currentUserId);
+        statement.setInt(2, contractId);
+        statement.executeUpdate();
+    }
 }

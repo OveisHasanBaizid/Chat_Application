@@ -2,6 +2,8 @@ package com.example.chat.controllers;
 
 import com.example.chat.HelloApplication;
 import com.example.chat.common.HelperSendingObject;
+import com.example.chat.common.PhoneNumberHelper;
+import com.example.chat.common.ShowDialog;
 import com.example.chat.dataBase.DataBaseUser;
 import com.example.chat.models.Group;
 import com.example.chat.models.User;
@@ -85,12 +87,14 @@ public class MainController {
         chat_pane.getChildren().clear();
         chat_pane.getChildren().add(fxmlLoader.load());
     }
+
     public void showChatGroupPane() throws IOException {
         HelperSendingObject.setPaneChat(chat_pane);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("chat_group_page.fxml"));
         chat_pane.getChildren().clear();
         chat_pane.getChildren().add(fxmlLoader.load());
     }
+
     public void addToListPv() throws SQLException {
         DataBaseUser dataBaseUser = new DataBaseUser();
         vbox_pv.getChildren().clear();
@@ -139,6 +143,33 @@ public class MainController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void btn_addContact() throws SQLException {
+        String phone = ShowDialog.showDialogGetPhone();
+        if (phone.length() < 10) {
+            ShowDialog.showMessage("Error", "The phone entered is invalid.");
+            return;
+        }
+        String prefix = phone.startsWith("+1") ? "+1" : phone.substring(0, 3);
+        if (!PhoneNumberHelper.validationPhoneNumber(prefix,phone.substring(prefix.length()))){
+            ShowDialog.showMessage("Error", "The phone entered is invalid.");
+            return;
+        }
+        DataBaseUser dataBaseUser = new DataBaseUser();
+        User user = dataBaseUser.findUserByPhone(PhoneNumberHelper
+                .converterPhoneNumber(prefix,phone.substring(prefix.length())));
+        System.out.println(prefix);
+        System.out.println(phone);
+        if (user==null){
+            ShowDialog.showMessage("Error", "The phone entered not exist in chat application.");
+        }else if (dataBaseUser.getAllContact(userCurrent.getId()).contains(user)){
+            ShowDialog.showMessage("Error", "The phone entered exist in your contacts.");
+        }else {
+            dataBaseUser.addContact(userCurrent.getId(),user.getId());
+            ShowDialog.showMessage("Info", "The phone entered added in your contacts successfully.");
+            addToListPv();
         }
     }
 }

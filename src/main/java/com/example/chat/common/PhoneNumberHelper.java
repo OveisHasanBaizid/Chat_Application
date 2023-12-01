@@ -10,7 +10,7 @@ public class PhoneNumberHelper {
                 + phone.substring(6, 9) + "-" + phone.substring(9);
     }
     public static String convertCanada(String phone) {
-        return phone.substring(0, 2) + "-" + phone.substring(3, 5) + "-"
+        return phone.substring(0, 2) + "-" + phone.substring(2, 5) + "-"
                 + phone.substring(5, 8) + "-" + phone.substring(8);
     }
     public static String convertEgypt(String phone) {

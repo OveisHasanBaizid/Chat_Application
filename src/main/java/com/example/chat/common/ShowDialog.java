@@ -51,11 +51,7 @@ public class ShowDialog {
         alert.setHeaderText(null);
         alert.setContentText("User not found. Do you want to register?");
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            return true;
-        } else {
-            return false;
-        }
+        return result.isPresent() && result.get() == ButtonType.OK;
     }
 
     public static String showDialogForGetUserName() {
@@ -66,9 +62,18 @@ public class ShowDialog {
 
         AtomicReference<String> name = new AtomicReference<>("");
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(answer -> {
-            name.set(answer);
-        });
+        result.ifPresent(name::set);
+        return name.get();
+    }
+    public static String showDialogGetPhone() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Add Contact");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Phone :");
+
+        AtomicReference<String> name = new AtomicReference<>("");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(name::set);
         return name.get();
     }
 }
