@@ -1,6 +1,6 @@
 package com.example.chat.controllers;
 
-import com.example.chat.HelloApplication;
+import com.example.chat.Main;
 import com.example.chat.common.HelperSendingObject;
 import com.example.chat.dataBase.DataBaseMessagePrivate;
 import com.example.chat.models.MessagePrivate;
@@ -44,7 +44,7 @@ public class ChatPvController {
         contact = (User) HelperSendingObject.getObject();
         userCurrent = HelperSendingObject.getUserCurrent();
         circle_image.setFill(new ImagePattern(
-                new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\profile_1.jpeg"))));
+                new Image(new FileInputStream("images\\profile_1.jpeg"))));
         new Thread(() -> {
             try {
                 Thread.sleep(100);
@@ -70,7 +70,7 @@ public class ChatPvController {
                 .getConversation(contact.getId(), userCurrent.getId())) {
             HBox messageBox = new HBox();
             FXMLLoader loader = new FXMLLoader(
-                    HelloApplication.class.getResource("custom_message_pv.fxml"));
+                    Main.class.getResource("custom_message_pv.fxml"));
             try {
                 HelperSendingObject.setObject(message);
                 Parent root = loader.load();

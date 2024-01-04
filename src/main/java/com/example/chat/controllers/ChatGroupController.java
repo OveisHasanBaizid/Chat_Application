@@ -1,6 +1,6 @@
 package com.example.chat.controllers;
 
-import com.example.chat.HelloApplication;
+import com.example.chat.Main;
 import com.example.chat.common.HelperSendingObject;
 import com.example.chat.dataBase.DataBaseGroup;
 import com.example.chat.models.Group;
@@ -48,7 +48,7 @@ public class ChatGroupController {
         group = HelperSendingObject.getGroup();
         userCurrent = HelperSendingObject.getUserCurrent();
         circle_image.setFill(new ImagePattern(
-                new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\group_icon.jpeg"))));
+                new Image(new FileInputStream("images\\group_icon.jpeg"))));
         initialize2();
         actionCircleImage();
     }
@@ -56,7 +56,7 @@ public class ChatGroupController {
     public void actionCircleImage() {
         circle_image.setOnMouseClicked(mouseEvent -> {
             FXMLLoader loader = new FXMLLoader(
-                    HelloApplication.class.getResource("group_details_page.fxml"));
+                    Main.class.getResource("group_details_page.fxml"));
             try {
                 HelperSendingObject.setGroup(group);
                 Pane pane = HelperSendingObject.getPaneChat();
@@ -94,7 +94,7 @@ public class ChatGroupController {
                 .getConversation(group.getId())) {
             HBox messageBox = new HBox();
             FXMLLoader loader = new FXMLLoader(
-                    HelloApplication.class.getResource("custom_message_group.fxml"));
+                    Main.class.getResource("custom_message_group.fxml"));
             try {
                 HelperSendingObject.setObject(message);
                 Parent root = loader.load();

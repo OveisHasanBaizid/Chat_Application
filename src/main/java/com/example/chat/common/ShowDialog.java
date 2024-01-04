@@ -1,6 +1,6 @@
 package com.example.chat.common;
 
-import com.example.chat.HelloApplication;
+import com.example.chat.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -26,7 +26,7 @@ public class ShowDialog {
     public static void showAlertRightClickOnUsers() throws IOException {
         Alert alert = new Alert(Alert.AlertType.NONE);
         FXMLLoader loader = new FXMLLoader(
-                HelloApplication.class.getResource("dialog_pane_right_click_on_users.fxml"));
+                Main.class.getResource("dialog_pane_right_click_on_users.fxml"));
         DialogPane dialogPane = loader.load();
         alert.setDialogPane(dialogPane);
         alert.setTitle("Details");
@@ -37,7 +37,7 @@ public class ShowDialog {
     public static void showAlertAddToGroup() throws IOException {
         Alert alert = new Alert(Alert.AlertType.NONE);
         FXMLLoader loader = new FXMLLoader(
-                HelloApplication.class.getResource("dialog_pane_add_to_group.fxml"));
+                Main.class.getResource("dialog_pane_add_to_group.fxml"));
         DialogPane dialogPane = loader.load();
         alert.setTitle("Add to group");
         alert.setDialogPane(dialogPane);
@@ -54,22 +54,11 @@ public class ShowDialog {
         return result.isPresent() && result.get() == ButtonType.OK;
     }
 
-    public static String showDialogForGetUserName() {
+    public static String showDialogGetOneInput(String title, String content) {
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Get Your UserName");
+        dialog.setTitle(title);
         dialog.setHeaderText(null);
-        dialog.setContentText("Please enter your username :");
-
-        AtomicReference<String> name = new AtomicReference<>("");
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(name::set);
-        return name.get();
-    }
-    public static String showDialogGetPhone() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Add Contact");
-        dialog.setHeaderText(null);
-        dialog.setContentText("Phone :");
+        dialog.setContentText(content + " :");
 
         AtomicReference<String> name = new AtomicReference<>("");
         Optional<String> result = dialog.showAndWait();

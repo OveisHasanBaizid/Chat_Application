@@ -23,7 +23,7 @@ public class ListPvController {
         user = (User) HelperSendingObject.getObject();
 
         circle_image.setFill(new ImagePattern(
-                new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\profile_1.jpeg"))));
+                new Image(new FileInputStream("images\\profile_1.jpeg"))));
 
         new Thread(() -> {
             try {

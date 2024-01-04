@@ -1,6 +1,6 @@
 package com.example.chat.controllers;
 
-import com.example.chat.HelloApplication;
+import com.example.chat.Main;
 import com.example.chat.common.HelperSendingObject;
 import com.example.chat.common.PhoneNumberHelper;
 import com.example.chat.common.ShowDialog;
@@ -46,7 +46,7 @@ public class MainController {
 
     public void initialize() throws FileNotFoundException {
         circle_image.setFill(new ImagePattern(
-                new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\profile_1.jpeg"))));
+                new Image(new FileInputStream("images\\profile_1.jpeg"))));
 
         new Thread(() -> {
             try {
@@ -83,14 +83,14 @@ public class MainController {
 
     public void showChatPvPane() throws IOException {
         HelperSendingObject.setPaneChat(chat_pane);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("chat_pv_page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("chat_pv_page.fxml"));
         chat_pane.getChildren().clear();
         chat_pane.getChildren().add(fxmlLoader.load());
     }
 
     public void showChatGroupPane() throws IOException {
         HelperSendingObject.setPaneChat(chat_pane);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("chat_group_page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("chat_group_page.fxml"));
         chat_pane.getChildren().clear();
         chat_pane.getChildren().add(fxmlLoader.load());
     }
@@ -100,7 +100,7 @@ public class MainController {
         vbox_pv.getChildren().clear();
         for (User user : dataBaseUser.getAllContact(userCurrent.getId())) {
             FXMLLoader loader = new FXMLLoader(
-                    HelloApplication.class.getResource("custom_item_pv.fxml"));
+                    Main.class.getResource("custom_item_pv.fxml"));
             try {
                 new Thread(() -> HelperSendingObject.setObject(user)).start();
                 Parent root = loader.load();
@@ -126,7 +126,7 @@ public class MainController {
         vbox_group.getChildren().clear();
         for (Group group : dataBaseUser.getAlGroups(userCurrent.getId())) {
             FXMLLoader loader = new FXMLLoader(
-                    HelloApplication.class.getResource("custom_item_group.fxml"));
+                    Main.class.getResource("custom_item_group.fxml"));
             try {
                 HelperSendingObject.setObject(group);
                 Parent root = loader.load();
@@ -147,7 +147,7 @@ public class MainController {
     }
 
     public void btn_addContact() throws SQLException {
-        String phone = ShowDialog.showDialogGetPhone();
+        String phone = ShowDialog.showDialogGetOneInput("Add Contact" , "Phone");
         if (phone.length() < 10) {
             ShowDialog.showMessage("Error", "The phone entered is invalid.");
             return;
@@ -170,6 +170,14 @@ public class MainController {
             dataBaseUser.addContact(userCurrent.getId(),user.getId());
             ShowDialog.showMessage("Info", "The phone entered added in your contacts successfully.");
             addToListPv();
+        }
+    }
+
+    public void btn_addGroup() {
+        String phone = ShowDialog.showDialogGetOneInput("Add Group" , "Name");
+        if (phone.length() < 3) {
+            ShowDialog.showMessage("Error", "The name entered is invalid.");
+            return;
         }
     }
 }

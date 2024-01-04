@@ -1,6 +1,6 @@
 package com.example.chat.controllers;
 
-import com.example.chat.HelloApplication;
+import com.example.chat.Main;
 import com.example.chat.common.HelperSendingObject;
 import com.example.chat.common.ShowDialog;
 import com.example.chat.dataBase.DataBaseGroup;
@@ -9,14 +9,12 @@ import com.example.chat.models.Group;
 import com.example.chat.models.GroupMember;
 import com.example.chat.models.User;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -49,7 +47,7 @@ public class GroupDetailsController {
         userCurrent = HelperSendingObject.getUserCurrent();
 
         circle_image.setFill(new ImagePattern(
-                new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\group_icon.jpeg"))));
+                new Image(new FileInputStream("images\\group_icon.jpeg"))));
 
         dataBaseGroup = new DataBaseGroup();
         number_users.setText("Users : "+dataBaseGroup.countMembers(group.getId()));
@@ -80,7 +78,7 @@ public class GroupDetailsController {
 
     public void backToChat() {
         FXMLLoader loader = new FXMLLoader(
-                HelloApplication.class.getResource("chat_group_page.fxml"));
+                Main.class.getResource("chat_group_page.fxml"));
         try {
             HelperSendingObject.setObject(group);
             Pane pane = HelperSendingObject.getPaneChat();
@@ -98,7 +96,7 @@ public class GroupDetailsController {
         for (GroupMember member : dataBaseGroup.getAllGroupMembers(group.getId())) {
             User user = dataBaseUser.findUserById(member.getUserId());
             FXMLLoader loader = new FXMLLoader(
-                    HelloApplication.class.getResource("custom_item_details_group.fxml"));
+                    Main.class.getResource("custom_item_details_group.fxml"));
             try {
                 new Thread(() -> {
                     HelperSendingObject.setObject(user);
@@ -137,7 +135,7 @@ public class GroupDetailsController {
 
         Stage stage = (Stage) pane.getScene().getWindow();
         pane.getChildren().clear();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main_page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main_page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 709, 523);
         stage.setTitle("Chat");
         stage.setScene(scene);

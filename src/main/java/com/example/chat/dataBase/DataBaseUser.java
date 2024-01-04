@@ -43,11 +43,7 @@ public class DataBaseUser {
     }
 
     public User covertToUser(ResultSet result) throws SQLException {
-        return new User(result.getInt(1)
-                , result.getInt(2)
-                , result.getString(3)
-                , result.getString(4)
-                , result.getInt(5) != 0);
+        return new User(result.getInt(1), result.getInt(2), result.getString(3), result.getString(4), result.getInt(5) != 0);
     }
 
     public List<User> getAll() throws SQLException {
@@ -93,8 +89,7 @@ public class DataBaseUser {
     public void insertUser(User user, String prefixPhone) throws SQLException {
         String sql = """
                 INSERT INTO dbo.tblUsers (IUserCountryID, IUserName, IUserPhone, IsIUserBlocked)
-                                SELECT CountryID, ? , ?, 0
-                                FROM dbo.tblCountry WHERE PreNumber = ?
+                SELECT CountryID, ? , ?, 0 FROM dbo.tblCountry WHERE PreNumber = ?
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, user.getName());
@@ -106,7 +101,7 @@ public class DataBaseUser {
     public void addContact(int currentUserId, int contractId) throws SQLException {
         String sql = """
                 INSERT INTO dbo.tblContactLists (MainUserID, UserInContactListID)
-                                VALUES (? ,?)
+                VALUES (? ,?)
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, currentUserId);

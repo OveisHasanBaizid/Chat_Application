@@ -25,17 +25,11 @@ public class DataBaseGroup {
     }
 
     public Group covertToGroup(ResultSet result) throws SQLException {
-        return new Group(result.getInt(1)
-                , result.getString(2)
-                , result.getInt(3)
-                , null);
+        return new Group(result.getInt(1), result.getString(2), result.getInt(3), null);
     }
 
     public GroupMember covertToGroupMember(ResultSet result) throws SQLException {
-        return new GroupMember(result.getInt(1)
-                , result.getInt(2)
-                , result.getInt(3)
-                , result.getInt(4) == 1);
+        return new GroupMember(result.getInt(1), result.getInt(2), result.getInt(3), result.getInt(4) == 1);
     }
 
     public Group findGroupById(int idGroup) throws SQLException {
@@ -61,11 +55,7 @@ public class DataBaseGroup {
     }
 
     public MessageGroup covertToMessageGroup(ResultSet result) throws SQLException {
-        return new MessageGroup(result.getInt(1)
-                , result.getInt(2)
-                , LocalDate.now()
-                , result.getString(4)
-                , result.getInt(5));
+        return new MessageGroup(result.getInt(1), result.getInt(2), LocalDate.now(), result.getString(4), result.getInt(5));
     }
 
     public List<GroupMember> getAllGroupMembers(int groupId) throws SQLException {
@@ -82,16 +72,8 @@ public class DataBaseGroup {
 
     public void sendMessage(String messageBody, int groupId) throws SQLException {
         String sql = """
-                INSERT INTO [tblMessageToGroups]
-                           ([SenderID]
-                           ,[MessageDateTime]
-                           ,[MessageBudy]
-                           ,[GroupID])
-                     VALUES
-                           (?
-                           ,GETDATE()
-                           ,?
-                           ,?)
+                INSERT INTO [tblMessageToGroups]([SenderID], [MessageDateTime], [MessageBudy], [GroupID])
+                     VALUES(?, GETDATE(), ?, ?)
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, userCurrent.getId());
@@ -103,8 +85,7 @@ public class DataBaseGroup {
     public void removeUserOfGroup(int groupId, int userId) throws SQLException {
         String sql = """
                 DELETE FROM tblGroupMembers 
-                WHERE  GroupID = ? and 
-                UserID = ?
+                WHERE  GroupID = ? and UserID = ?
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, groupId);
@@ -114,14 +95,8 @@ public class DataBaseGroup {
 
     public void addUserToGroup(int groupId, int userId) throws SQLException {
         String sql = """
-                INSERT INTO [tblGroupMembers]
-                           ([GroupID]
-                            ,[UserID]
-                            ,[IsThatMemberAdmin])
-                     VALUES
-                           (?
-                           ,?
-                           ,0)
+                INSERT INTO [tblGroupMembers]([GroupID], [UserID], [IsThatMemberAdmin])
+                     VALUES(?, ?, 0)
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, groupId);
@@ -157,5 +132,16 @@ public class DataBaseGroup {
             users.add(dataBaseUser.covertToUser(result));
         }
         return users;
+    }
+
+    public void addNewGroup(String nameGroup) throws SQLException {
+        String sql = """
+                INSERT INTO [tblGroups]([GroupName], [GroupCreatorID], [GroupCreationDate])
+                     VALUES(?, ?, GETDATE())
+                """;
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, nameGroup);
+        statement.setInt(2, userCurrent.getId());
+        statement.executeUpdate();
     }
 }

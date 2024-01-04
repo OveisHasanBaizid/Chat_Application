@@ -1,6 +1,6 @@
 package com.example.chat.controllers;
 
-import com.example.chat.HelloApplication;
+import com.example.chat.Main;
 import com.example.chat.common.HelperSendingObject;
 import com.example.chat.common.PhoneNumberHelper;
 import com.example.chat.common.ShowDialog;
@@ -68,10 +68,10 @@ public class LoginController {
     public void register() throws SQLException, IOException {
         String phone = PhoneNumberHelper.converterPhoneNumber(tf_prefixCode.getText(), tf_phone.getText());
         DataBaseUser dataBaseUser = new DataBaseUser();
-        String name = ShowDialog.showDialogForGetUserName();
+        String name = ShowDialog.showDialogGetOneInput("Get Your UserName" , "Username");
         while (name.isEmpty() || dataBaseUser.isExistUserName(name)) {
             ShowDialog.showMessage("Error", "The name entered is invalid.");
-            name = ShowDialog.showDialogForGetUserName();
+            name = ShowDialog.showDialogGetOneInput("Get Your UserName" , "Username");
         }
         User user = new User(0, 0, name, phone, false);
         dataBaseUser.insertUser(user, tf_prefixCode.getText());
@@ -82,7 +82,7 @@ public class LoginController {
 
     public void showMainPage() throws IOException {
         Stage stage = (Stage) tf_phone.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main_page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main_page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 709, 523);
         stage.setTitle("Chat");
         stage.setScene(scene);

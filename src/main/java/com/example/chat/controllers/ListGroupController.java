@@ -26,7 +26,7 @@ public class ListGroupController {
         group = (Group) HelperSendingObject.getObject();
 
         circle_image.setFill(new ImagePattern(
-                new Image(new FileInputStream("C:\\Users\\Oveis\\IdeaProjects\\Chat\\images\\group_icon.jpeg"))));
+                new Image(new FileInputStream("images\\group_icon.jpeg"))));
 
         new Thread(() -> {
             try {

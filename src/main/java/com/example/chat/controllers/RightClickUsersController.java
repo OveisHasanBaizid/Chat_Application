@@ -1,6 +1,6 @@
 package com.example.chat.controllers;
 
-import com.example.chat.HelloApplication;
+import com.example.chat.Main;
 import com.example.chat.common.HelperSendingObject;
 import com.example.chat.dataBase.DataBaseGroup;
 import com.example.chat.models.Group;
@@ -52,7 +52,7 @@ public class RightClickUsersController {
         btn_back();
 
         FXMLLoader loader = new FXMLLoader(
-                HelloApplication.class.getResource("group_details_page.fxml"));
+                Main.class.getResource("group_details_page.fxml"));
             HelperSendingObject.setGroup(group);
             Pane pane = HelperSendingObject.getPaneChat();
             pane.getChildren().clear();

@@ -1,6 +1,6 @@
 package com.example.chat.controllers;
 
-import com.example.chat.HelloApplication;
+import com.example.chat.Main;
 import com.example.chat.common.HelperSendingObject;
 import com.example.chat.dataBase.DataBaseGroup;
 import com.example.chat.models.Group;
@@ -64,7 +64,7 @@ public class AddToGroupController {
     public void showChatGroupPane() throws IOException {
         HelperSendingObject.setGroup(group);
         Pane pane = HelperSendingObject.getPaneChat();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("group_details_page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("group_details_page.fxml"));
         pane.getChildren().clear();
         pane.getChildren().add(fxmlLoader.load());
     }
