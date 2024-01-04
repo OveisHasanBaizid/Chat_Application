@@ -3,7 +3,7 @@ package com.example.chat.dataBase;
 import java.sql.*;
 
 public class ConnectionDataBase {
-    private static Connection connection;
+    private static final Connection connection;
     static {
         String connectionString = "jdbc:sqlserver://DESKTOP-1TDK8JA\\Oveis;database=InstantMessagingDB;"+
                 "encrypt=false;trustServerCertificate=true;integratedSecurity=true";
