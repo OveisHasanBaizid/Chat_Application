@@ -49,7 +49,7 @@ public class ChatGroupController {
         userCurrent = HelperSendingObject.getUserCurrent();
         circle_image.setFill(new ImagePattern(
                 new Image(new FileInputStream("images\\group_icon.jpeg"))));
-        initialize2();
+        threadInitialize();
         actionCircleImage();
     }
 
@@ -68,7 +68,7 @@ public class ChatGroupController {
         });
     }
 
-    public void initialize2() {
+    public void threadInitialize() {
         new Thread(() -> {
             try {
                 Thread.sleep(100);

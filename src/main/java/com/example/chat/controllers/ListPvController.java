@@ -25,17 +25,20 @@ public class ListPvController {
         circle_image.setFill(new ImagePattern(
                 new Image(new FileInputStream("images\\profile_1.jpeg"))));
 
+        threadInitialize();
+    }
+
+    public void threadInitialize() {
         new Thread(() -> {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if (user!=null){
+            if (user != null) {
                 txt_name.setText(user.getName());
                 txt_phone.setText(user.getPhone());
             }
         }).start();
     }
-
 }

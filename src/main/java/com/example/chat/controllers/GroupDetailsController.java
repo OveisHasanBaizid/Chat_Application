@@ -52,12 +52,12 @@ public class GroupDetailsController {
         dataBaseGroup = new DataBaseGroup();
         number_users.setText("Users : "+dataBaseGroup.countMembers(group.getId()));
 
-        initialize2();
+        threadInitialize();
 
         btn_back.setOnMouseClicked(mouseEvent -> backToChat());
     }
 
-    public void initialize2() {
+    public void threadInitialize() {
         new Thread(() -> {
             try {
                 Thread.sleep(100);

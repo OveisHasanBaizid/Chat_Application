@@ -27,7 +27,9 @@ public class ListGroupController {
 
         circle_image.setFill(new ImagePattern(
                 new Image(new FileInputStream("images\\group_icon.jpeg"))));
-
+        threadInitialize();
+    }
+    public void threadInitialize() {
         new Thread(() -> {
             try {
                 Thread.sleep(100);
@@ -46,5 +48,4 @@ public class ListGroupController {
             }
         }).start();
     }
-
 }

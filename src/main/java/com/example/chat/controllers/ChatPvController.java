@@ -45,6 +45,9 @@ public class ChatPvController {
         userCurrent = HelperSendingObject.getUserCurrent();
         circle_image.setFill(new ImagePattern(
                 new Image(new FileInputStream("images\\profile_1.jpeg"))));
+        threadInitialize();
+    }
+    public void threadInitialize(){
         new Thread(() -> {
             try {
                 Thread.sleep(100);
@@ -61,7 +64,6 @@ public class ChatPvController {
             });
         }).start();
     }
-
     public void setMessage() throws SQLException {
         DataBaseMessagePrivate dataBaseMessagePrivate = new DataBaseMessagePrivate();
         vbox_message.getChildren().clear();

@@ -4,6 +4,7 @@ import com.example.chat.Main;
 import com.example.chat.common.HelperSendingObject;
 import com.example.chat.common.PhoneNumberHelper;
 import com.example.chat.common.ShowDialog;
+import com.example.chat.dataBase.DataBaseGroup;
 import com.example.chat.dataBase.DataBaseUser;
 import com.example.chat.models.Group;
 import com.example.chat.models.User;
@@ -48,6 +49,22 @@ public class MainController {
         circle_image.setFill(new ImagePattern(
                 new Image(new FileInputStream("images\\profile_1.jpeg"))));
 
+        threadInitialize();
+
+        AtomicBoolean initGroupList = new AtomicBoolean(false);
+        tabPane.getSelectionModel().selectedIndexProperty().addListener((ov, oldValue, newValue) -> {
+            if (!initGroupList.get() && newValue.intValue() == 1) {
+                initGroupList.set(true);
+                try {
+                    addToListGroup();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+
+    public void threadInitialize(){
         new Thread(() -> {
             try {
                 Thread.sleep(300);
@@ -66,20 +83,7 @@ public class MainController {
                 }
             });
         }).start();
-
-        AtomicBoolean initGroupList = new AtomicBoolean(false);
-        tabPane.getSelectionModel().selectedIndexProperty().addListener((ov, oldValue, newValue) -> {
-            if (!initGroupList.get() && newValue.intValue() == 1) {
-                initGroupList.set(true);
-                try {
-                    addToListGroup();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
     }
-
 
     public void showChatPvPane() throws IOException {
         HelperSendingObject.setPaneChat(chat_pane);
@@ -173,12 +177,16 @@ public class MainController {
         }
     }
 
-    public void btn_addGroup() {
-        String phone = ShowDialog.showDialogGetOneInput("Add Group" , "Name");
-        if (phone.length() < 3) {
-            ShowDialog.showMessage("Error", "The name entered is invalid.");
+    public void btn_addGroup() throws SQLException {
+        String groupName = ShowDialog.showDialogGetOneInput("Add Group", "Name");
+        if (groupName.length() < 3) {
+            ShowDialog.showMessage("Error", "The name entered is invalid. The number of characters must be more than 3.");
             return;
         }
+        DataBaseGroup dataBaseGroup = new DataBaseGroup();
+        dataBaseGroup.addNewGroup(groupName);
+        ShowDialog.showMessage("Info", "The new group added in your groups successfully.");
+        addToListGroup();
     }
 }
 

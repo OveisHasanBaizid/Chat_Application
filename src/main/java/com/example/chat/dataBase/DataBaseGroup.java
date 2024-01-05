@@ -135,11 +135,11 @@ public class DataBaseGroup {
     }
 
     public void addNewGroup(String nameGroup) throws SQLException {
-        String sql = """
-                INSERT INTO [tblGroups]([GroupName], [GroupCreatorID], [GroupCreationDate])
-                     VALUES(?, ?, GETDATE())
+        String sqlAddGroup = """
+                INSERT INTO tblGroups (GroupName, GroupCreatorID, GroupCreationDate)
+                        VALUES(?, ?, GETDATE())
                 """;
-        PreparedStatement statement = connection.prepareStatement(sql);
+        PreparedStatement statement = connection.prepareStatement(sqlAddGroup);
         statement.setString(1, nameGroup);
         statement.setInt(2, userCurrent.getId());
         statement.executeUpdate();
