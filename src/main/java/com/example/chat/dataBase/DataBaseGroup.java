@@ -84,7 +84,7 @@ public class DataBaseGroup {
 
     public void removeUserOfGroup(int groupId, int userId) throws SQLException {
         String sql = """
-                DELETE FROM tblGroupMembers 
+                DELETE FROM tblGroupMembers
                 WHERE  GroupID = ? and UserID = ?
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);

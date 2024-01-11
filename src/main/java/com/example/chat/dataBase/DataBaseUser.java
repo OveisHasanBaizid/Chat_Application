@@ -88,8 +88,8 @@ public class DataBaseUser {
 
     public void insertUser(User user, String prefixPhone) throws SQLException {
         String sql = """
-                INSERT INTO dbo.tblUsers (IUserCountryID, IUserName, IUserPhone, IsIUserBlocked)
-                SELECT CountryID, ? , ?, 0 FROM dbo.tblCountry WHERE PreNumber = ?
+                INSERT INTO dbo.tblUsers (IUserCountryID, IUserName, IUserPhone, IsIUserBlocked , IsWoman)
+                SELECT CountryID, ? , ?, 0 , 0 FROM dbo.tblCountry WHERE PreNumber = ?
                 """;
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, user.getName());
