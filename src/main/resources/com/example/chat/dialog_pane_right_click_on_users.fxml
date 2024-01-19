@@ -1,43 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<DialogPane prefHeight="265.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/18"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.chat.controllers.RightClickUsersController" fx:id="dialog_pane">
+
+<DialogPane fx:id="dialog_pane" prefHeight="265.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.controllers.RightClickUsersController">
     <content>
         <Pane prefHeight="52.0" prefWidth="200.0">
-            <Button layoutX="25.0" layoutY="79.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0"
-                    text="Upgrade" fx:id="btn_upgrade">
+            <Button fx:id="btn_upgrade" layoutX="25.0" layoutY="79.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" text="Upgrade">
                 <font>
-                    <Font size="14.0"/>
+                    <Font size="14.0" />
                 </font>
             </Button>
-            <Text layoutX="59.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User : Ali">
+            <Button fx:id="btn_remove" layoutX="25.0" layoutY="127.0" mnemonicParsing="false" onAction="#btn_removeUser" prefHeight="34.0" prefWidth="150.0" text="Remove">
                 <font>
-                    <Font name="System Bold" size="20.0"/>
-                </font>
-            </Text>
-            <Button layoutX="25.0" layoutY="127.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0"
-                    text="Remove" onAction="#btn_removeUser" fx:id="btn_remove">
-                <font>
-                    <Font size="14.0"/>
+                    <Font size="14.0" />
                 </font>
             </Button>
-            <Button layoutX="25.0" layoutY="172.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0"
-                    text="Send Massage">
+            <Button layoutX="25.0" layoutY="172.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" text="Send Massage">
                 <font>
-                    <Font size="14.0"/>
+                    <Font size="14.0" />
                 </font>
             </Button>
-            <Button layoutX="25.0" layoutY="216.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0"
-                    text="Back" onAction="#btn_back">
+            <Button layoutX="25.0" layoutY="216.0" mnemonicParsing="false" onAction="#btn_back" prefHeight="34.0" prefWidth="150.0" text="Back">
                 <font>
-                    <Font size="14.0"/>
+                    <Font size="14.0" />
                 </font>
             </Button>
+            <HBox layoutY="23.0" prefHeight="28.0" prefWidth="200.0" style="-fx-alignment: center;">
+                <Text fx:id="nameUser" strokeType="OUTSIDE" strokeWidth="0.0" text="User : Ali">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Text>
+            </HBox>
         </Pane>
     </content>
 </DialogPane>

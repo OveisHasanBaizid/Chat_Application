@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +23,8 @@ public class RightClickUsersController {
     Group group;
     @FXML
     Button btn_upgrade , btn_remove;
+    @FXML
+    Text nameUser;
 
     boolean isAdmin;
     public void initialize(){
@@ -39,6 +42,7 @@ public class RightClickUsersController {
                 btn_upgrade.setDisable(true);
             if (isAdmin && group.getCreatorId()!=userCurrent.getId())
                 btn_remove.setDisable(true);
+            nameUser.setText("User : "+user.getName());
         }).start();
     }
     public void btn_back(){
