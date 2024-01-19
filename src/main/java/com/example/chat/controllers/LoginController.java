@@ -49,10 +49,17 @@ public class LoginController {
     public void btnLogin() throws IOException, SQLException {
         String phone = tf_phone.getText();
         String prefixCode = tf_prefixCode.getText();
+
+        if (phone.equals("admin")) {
+            HelperSendingObject.setUserIsAdminSystem(true);
+            showMainPage();
+        }
+
         if (!PhoneNumberHelper.validationPhoneNumber(prefixCode, phone)) {
             ShowDialog.showMessage("Error", "The phone number entered is invalid.");
             return;
         }
+
         DataBaseUser dataBaseUser = new DataBaseUser();
         phone = PhoneNumberHelper.converterPhoneNumber(prefixCode, phone);
         User user = dataBaseUser.findUserByPhone(phone);

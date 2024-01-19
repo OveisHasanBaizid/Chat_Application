@@ -144,4 +144,15 @@ public class DataBaseGroup {
         statement.setInt(2, userCurrent.getId());
         statement.executeUpdate();
     }
+
+    public List<Group> getAllGroup() throws SQLException {
+        List<Group> groups = new ArrayList<>();
+        String sql = "SELECT * FROM tblGroups";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet result = statement.executeQuery();
+        while (result.next()) {
+            groups.add(covertToGroup(result));
+        }
+        return groups;
+    }
 }

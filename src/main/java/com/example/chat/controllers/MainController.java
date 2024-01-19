@@ -25,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainController {
@@ -56,7 +57,7 @@ public class MainController {
             if (!initGroupList.get() && newValue.intValue() == 1) {
                 initGroupList.set(true);
                 try {
-                    addToListGroup();
+                    setGroupToList();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -71,18 +72,26 @@ public class MainController {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            userCurrent = HelperSendingObject.getUserCurrent();
-            tf_name.setText(userCurrent.getName());
+            if (HelperSendingObject.isUserIsAdminSystem())
+                loginAdminSystem();
+            else {
+                userCurrent = HelperSendingObject.getUserCurrent();
+                tf_name.setText(userCurrent.getName());
+            }
             Platform.runLater(() -> {
                 for (int i = 0; i < 2; i++) {
                     try {
-                        addToListPv();
+                        setPvToListContact();
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                 }
             });
         }).start();
+    }
+
+    public void loginAdminSystem() {
+        tf_name.setText("admin");
     }
 
     public void showChatPvPane() throws IOException {
@@ -99,10 +108,19 @@ public class MainController {
         chat_pane.getChildren().add(fxmlLoader.load());
     }
 
-    public void addToListPv() throws SQLException {
+    public void setPvToListContact() throws SQLException {
+        List<User> contacts;
         DataBaseUser dataBaseUser = new DataBaseUser();
+        if (HelperSendingObject.isUserIsAdminSystem())
+            contacts = dataBaseUser.getAll();
+        else
+            contacts = dataBaseUser.getAllContact(userCurrent.getId());
+        addToListPv(contacts);
+    }
+
+    public void addToListPv(List<User> contacts) {
         vbox_pv.getChildren().clear();
-        for (User user : dataBaseUser.getAllContact(userCurrent.getId())) {
+        for (User user : contacts) {
             FXMLLoader loader = new FXMLLoader(
                     Main.class.getResource("custom_item_pv.fxml"));
             try {
@@ -124,11 +142,21 @@ public class MainController {
         }
     }
 
+    public void setGroupToList() throws SQLException {
+        List<Group> groups;
 
-    public void addToListGroup() throws SQLException {
-        DataBaseUser dataBaseUser = new DataBaseUser();
+        if (HelperSendingObject.isUserIsAdminSystem()) {
+            DataBaseGroup dataBaseGroup = new DataBaseGroup();
+            groups = dataBaseGroup.getAllGroup();
+        }else {
+            DataBaseUser dataBaseUser = new DataBaseUser();
+            groups = dataBaseUser.getAlGroups(userCurrent.getId());
+        }
+        addToListGroup(groups);
+    }
+    public void addToListGroup(List<Group> groups) throws SQLException {
         vbox_group.getChildren().clear();
-        for (Group group : dataBaseUser.getAlGroups(userCurrent.getId())) {
+        for (Group group : groups) {
             FXMLLoader loader = new FXMLLoader(
                     Main.class.getResource("custom_item_group.fxml"));
             try {
@@ -173,7 +201,7 @@ public class MainController {
         }else {
             dataBaseUser.addContact(userCurrent.getId(),user.getId());
             ShowDialog.showMessage("Info", "The phone entered added in your contacts successfully.");
-            addToListPv();
+            setPvToListContact();
         }
     }
 
@@ -186,7 +214,7 @@ public class MainController {
         DataBaseGroup dataBaseGroup = new DataBaseGroup();
         dataBaseGroup.addNewGroup(groupName);
         ShowDialog.showMessage("Info", "The new group added in your groups successfully.");
-        addToListGroup();
+        setGroupToList();
     }
 }
 

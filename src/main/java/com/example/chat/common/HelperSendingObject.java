@@ -10,6 +10,15 @@ public final class HelperSendingObject {
     private static Pane paneChat;
     private static boolean isAdmin;
     private static Group group;
+    private static boolean userIsAdminSystem;
+
+    public static boolean isUserIsAdminSystem() {
+        return userIsAdminSystem;
+    }
+
+    public static void setUserIsAdminSystem(boolean userIsAdminSystem) {
+        HelperSendingObject.userIsAdminSystem = userIsAdminSystem;
+    }
 
     public static Object getObject() {
         return object;
